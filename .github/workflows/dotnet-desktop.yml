@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # uses GitHub's checkout action to checkout code form the master branch
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     # sets up .NET Core SDK 3.1
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.x
     # Configure WASM tools
@@ -35,7 +35,7 @@ jobs:
       run: ls -al
     # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to CurrentDevice
-      run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/index.html
+      run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/wwwroot/index.html
     # DEBUG: List files
     - name: copy to release 
       run: cp release/wwwroot/* release/ -r
