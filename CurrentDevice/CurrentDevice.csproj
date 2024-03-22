@@ -14,6 +14,7 @@
     <Copyright>HugoVG</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RootNamespace>BlazorCurrentDevice</RootNamespace>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
 
@@ -23,5 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="README.md" />
+    <None Include="../LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+    
   </ItemGroup>
 </Project>

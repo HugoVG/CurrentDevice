@@ -1,4 +1,4 @@
-# BlazorCurrentDevice
+# CurrentDevice
 
 Device/User agent detector made in Blazor for Blazor. This library is a port of [CurrentDevice](https://github.com/matthewhudson/current-device/)
 
