@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace BlazorCurrentDevice
 {
-    internal class BlazorCurrentDeviceService : IBlazorCurrentDeviceService
+    internal class CurrentDeviceService : ICurrentDeviceService
     {
         protected IJSRuntime JSRuntime { get; set; }
-        public BlazorCurrentDeviceService(IJSRuntime jSRuntime)
+        public CurrentDeviceService(IJSRuntime jSRuntime)
         {
             JSRuntime = jSRuntime;
         }

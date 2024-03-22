@@ -2,7 +2,7 @@
 
 namespace BlazorCurrentDevice
 {
-    public interface IBlazorCurrentDeviceService
+    public interface ICurrentDeviceService
     {
         /// <summary>
         /// Gets the user agent of the current device

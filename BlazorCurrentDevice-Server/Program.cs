@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddBlazorCurrentDevice();
+builder.Services.AddCurrentDeviceService();
 
 var app = builder.Build();
 

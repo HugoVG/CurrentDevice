@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BlazorCurrentDevice\BlazorCurrentDevice.csproj" />
+      <ProjectReference Include="..\CurrentDevice\CurrentDevice.csproj" />
     </ItemGroup>
 
 </Project>

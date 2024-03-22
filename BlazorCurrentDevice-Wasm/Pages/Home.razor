@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using BlazorCurrentDevice
 @inject IJSRuntime JSRuntime
-@inject IBlazorCurrentDeviceService BlazorCurrentDeviceService
+@inject ICurrentDeviceService CurrentDeviceService
 
 <h1>Blazor Current Device Demo</h1>
 <div>User Agent: @UserAgent</div>
@@ -105,32 +105,32 @@
     protected override async Task OnInitializedAsync()
     {
         // Get the user agent using JavaScript interop
-        UserAgent = await BlazorCurrentDeviceService.GetUserAgent();
-        Android = await BlazorCurrentDeviceService.Android();
-        AndroidPhone = await BlazorCurrentDeviceService.AndroidPhone();
-        AndroidTablet = await BlazorCurrentDeviceService.AndroidTablet();
-        Blackberry = await BlazorCurrentDeviceService.Blackberry();
-        BlackberryPhone = await BlazorCurrentDeviceService.BlackberryPhone();
-        BlackberryTablet = await BlazorCurrentDeviceService.BlackberryTablet();
+        UserAgent = await CurrentDeviceService.GetUserAgent();
+        Android = await CurrentDeviceService.Android();
+        AndroidPhone = await CurrentDeviceService.AndroidPhone();
+        AndroidTablet = await CurrentDeviceService.AndroidTablet();
+        Blackberry = await CurrentDeviceService.Blackberry();
+        BlackberryPhone = await CurrentDeviceService.BlackberryPhone();
+        BlackberryTablet = await CurrentDeviceService.BlackberryTablet();
         //Cordova = await BlazorCurrentDeviceService.Cordova();
-        Desktop = await BlazorCurrentDeviceService.Desktop();
-        iOS = await BlazorCurrentDeviceService.iOS();
-        iPad = await BlazorCurrentDeviceService.iPad();
-        iPhone = await BlazorCurrentDeviceService.iPhone();
-        iPod = await BlazorCurrentDeviceService.iPod();
-        Landscape = await BlazorCurrentDeviceService.Landscape();
-        MacOs = await BlazorCurrentDeviceService.MacOs();
-        MeeGo = await BlazorCurrentDeviceService.MeeGo();
-        Mobile = await BlazorCurrentDeviceService.Mobile();
-        Orientation = await BlazorCurrentDeviceService.Orientation();
-        OS = await BlazorCurrentDeviceService.OS();
-        Portrait = await BlazorCurrentDeviceService.Portrait();
-        Tablet = await BlazorCurrentDeviceService.Tablet();
-        Television = await BlazorCurrentDeviceService.Television();
-        Type = await BlazorCurrentDeviceService.Type();
-        Windows = await BlazorCurrentDeviceService.Windows();
-        WindowsPhone = await BlazorCurrentDeviceService.WindowsPhone();
-        WindowsTablet = await BlazorCurrentDeviceService.WindowsTablet();
+        Desktop = await CurrentDeviceService.Desktop();
+        iOS = await CurrentDeviceService.iOS();
+        iPad = await CurrentDeviceService.iPad();
+        iPhone = await CurrentDeviceService.iPhone();
+        iPod = await CurrentDeviceService.iPod();
+        Landscape = await CurrentDeviceService.Landscape();
+        MacOs = await CurrentDeviceService.MacOs();
+        MeeGo = await CurrentDeviceService.MeeGo();
+        Mobile = await CurrentDeviceService.Mobile();
+        Orientation = await CurrentDeviceService.Orientation();
+        OS = await CurrentDeviceService.OS();
+        Portrait = await CurrentDeviceService.Portrait();
+        Tablet = await CurrentDeviceService.Tablet();
+        Television = await CurrentDeviceService.Television();
+        Type = await CurrentDeviceService.Type();
+        Windows = await CurrentDeviceService.Windows();
+        WindowsPhone = await CurrentDeviceService.WindowsPhone();
+        WindowsTablet = await CurrentDeviceService.WindowsTablet();
         
     }
 }
