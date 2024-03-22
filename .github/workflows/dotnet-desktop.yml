@@ -18,13 +18,17 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 8.x
+    # Configure WASM tools
+    - name: Download wasm Tools
+      run: dotnet workload install wasm-tools
+        
     # Go to correct dolfer
     - name: CD to Wasm
       run: cd BlazorCurrentDevice-Wasm/ 
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
-      run: dotnet publish -c Release -o release --nologo
+      run: dotnet publish -c Release -o ../release -f net8.0 --nologo
     
     # changes the base-tag in index.html from '/' to 'EcoRoomCalculator' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to CurrentDevice
