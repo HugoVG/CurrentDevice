@@ -33,6 +33,12 @@ jobs:
     # DEBUG: List files
     - name: ls
       run: ls -al
+    # DEBUG: List files
+    - name: copy to release 
+      run: cp release/wwwroot/* release/ -r
+    # DEBUG: List files
+    - name: ls more
+      run: ls release/ -al 
     
     # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to CurrentDevice
