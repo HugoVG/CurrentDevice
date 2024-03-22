@@ -15,4 +15,10 @@
       <ProjectReference Include="..\CurrentDevice\CurrentDevice.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="release\web.config" />
+      <_ContentIncludedByDefault Remove="release\wwwroot\sample-data\weather.json" />
+      <_ContentIncludedByDefault Remove="release\wwwroot\_framework\blazor.boot.json" />
+    </ItemGroup>
+
 </Project>

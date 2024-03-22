@@ -1,71 +1,93 @@
 ﻿@page "/"
 @using BlazorCurrentDevice
-@inject IJSRuntime JSRuntime
 @inject ICurrentDeviceService CurrentDeviceService
 
-<h1>Blazor Current Device Demo</h1>
-<div>User Agent: @UserAgent</div>
-<div>Orientation: @Orientation</div>
-<dl>
-    <dt class="@(Android ? "bg-success text-white" : "")">Android</dt>
-    <dd class="@(Android ? "bg-success text-white" : "")">@Android</dd>
-    <dt class="@(AndroidPhone ? "bg-success text-white" : "")">AndroidPhone</dt>
-    <dd class="@(AndroidPhone ? "bg-success text-white" : "")">@AndroidPhone</dd>
-    <dt class="@(AndroidTablet ? "bg-success text-white" : "")">AndroidTablet</dt>
-    <dd class="@(AndroidTablet ? "bg-success text-white" : "")">@AndroidTablet</dd>
-    <dt class="@(Blackberry ? "bg-success text-white" : "")">Blackberry</dt>
-    <dd class="@(Blackberry ? "bg-success text-white" : "")">@Blackberry</dd>
-    <dt class="@(BlackberryPhone ? "bg-success text-white" : "")">BlackberryPhone</dt>
-    <dd class="@(BlackberryPhone ? "bg-success text-white" : "")">@BlackberryPhone</dd>
-    <dt class="@(BlackberryTablet ? "bg-success text-white" : "")">BlackberryTablet</dt>
-    <dd class="@(BlackberryTablet ? "bg-success text-white" : "")">@BlackberryTablet</dd>
-    @*<dt class="@(Cordova ? "bg-success text-white" : "")">Cordova</dt>
-        <dd class="@(Cordova ? "bg-success text-white" : "")">@Cordova</dd>*@
-    <dt class="@(Desktop ? "bg-success text-white" : "")">Desktop</dt>
-    <dd class="@(Desktop ? "bg-success text-white" : "")">@Desktop</dd>
-    <dt class="@(FireFoxOs ? "bg-success text-white" : "")">FireFoxOs</dt>
-    <dd class="@(FireFoxOs ? "bg-success text-white" : "")">@FireFoxOs</dd>
-    <dt class="@(FireFoxOsPhone ? "bg-success text-white" : "")">FireFoxOsPhone</dt>
-    <dd class="@(FireFoxOsPhone ? "bg-success text-white" : "")">@FireFoxOsPhone</dd>
-    <dt class="@(FireFoxOsTablet ? "bg-success text-white" : "")">FireFoxOsTablet</dt>
-    <dd class="@(FireFoxOsTablet ? "bg-success text-white" : "")">@FireFoxOsTablet</dd>
-    <dt class="@(iOS ? "bg-success text-white" : "")">iOS</dt>
-    <dd class="@(iOS ? "bg-success text-white" : "")">@iOS</dd>
-    <dt class="@(iPad ? "bg-success text-white" : "")">iPad</dt>
-    <dd class="@(iPad ? "bg-success text-white" : "")">@iPad</dd>
-    <dt class="@(iPhone ? "bg-success text-white" : "")">iPhone</dt>
-    <dd class="@(iPhone ? "bg-success text-white" : "")">@iPhone</dd>
-    <dt class="@(iPod ? "bg-success text-white" : "")">iPod</dt>
-    <dd class="@(iPod ? "bg-success text-white" : "")">@iPod</dd>
-    <dt class="bg-info text-white">Landscape</dt>
-    <dd class="bg-info text-white">@Landscape</dd>
-    <dt class="@(MacOs ? "bg-success text-white" : "")">MacOs</dt>
-    <dd class="@(MacOs ? "bg-success text-white" : "")">@MacOs</dd>
-    <dt class="@(MeeGo ? "bg-success text-white" : "")">MeeGo</dt>
-    <dd class="@(MeeGo ? "bg-success text-white" : "")">@MeeGo</dd>
-    <dt class="@(Mobile ? "bg-success text-white" : "")">Mobile</dt>
-    <dd class="@(Mobile ? "bg-success text-white" : "")">@Mobile</dd>
-    <dt class="@(NodeWebkit ? "bg-success text-white" : "")">NodeWebkit</dt>
-    <dd class="@(NodeWebkit ? "bg-success text-white" : "")">@NodeWebkit</dd>
-    <dt class="bg-info text-white">Orientation</dt>
-    <dd class="bg-info text-white">@Orientation</dd>
-    <dt class="bg-info text-white">OS</dt>
-    <dd class="bg-info text-white">@OS</dd>
-    <dt class="bg-info text-white">Portrait</dt>
-    <dd class="bg-info text-white">@Portrait</dd>
-    <dt class="@(Tablet ? "bg-success text-white" : "")">Tablet</dt>
-    <dd class="@(Tablet ? "bg-success text-white" : "")">@Tablet</dd>
-    <dt class="@(Television ? "bg-success text-white" : "")">Television</dt>
-    <dd class="@(Television ? "bg-success text-white" : "")">@Television</dd>
-    <dt class="bg-info text-white">Type</dt>
-    <dd class="bg-info text-white">@Type</dd>
-    <dt class="@(Windows ? "bg-success text-white" : "")">Windows</dt>
-    <dd class="@(Windows ? "bg-success text-white" : "")">@Windows</dd>
-    <dt class="@(WindowsPhone ? "bg-success text-white" : "")">WindowsPhone</dt>
-    <dd class="@(WindowsPhone ? "bg-success text-white" : "")">@WindowsPhone</dd>
-    <dt class="@(WindowsTablet ? "bg-success text-white" : "")">WindowsTablet</dt>
-    <dd class="@(WindowsTablet ? "bg-success text-white" : "")">@WindowsTablet</dd>
-</dl>
+<h1 class="colour-text big-text">Blazor Current Device Demo</h1>
+<h3 class="colour-text">User Agent: @UserAgent</h3>
+
+@if (Desktop)
+{
+    <p class="colour-text">
+        <i class="fa-solid fa-computer"></i> Desktop
+    </p>
+}
+else if (Mobile)
+{
+    <p class="colour-text">
+        <i class="fa-solid fa-mobile-screen-button"></i> Mobile
+    </p>
+}
+else if (Tablet)
+{
+    <p class="colour-text">
+        <i class="fa-solid fa-tablet-screen-button"></i> Tablet
+    </p>
+}
+
+@if(Orientation == "portrait")
+{
+    <p class="colour-text">
+        <i class="fa-solid fa-up-down"></i> Portrait
+    </p>
+}
+else if(Orientation == "landscape")
+{
+    <p class="colour-text">
+        <i class="fa-solid fa-left-right"></i> Landscape
+    </p>
+}
+
+@if (Windows)
+{
+    <p class="colour-text">
+        <i class="fa-brands fa-windows"></i> Windows
+    </p>
+}
+else if (Android)
+{
+    <p class="colour-text">
+        <i class="fa-brands fa-android"></i> Android
+    </p>
+    
+}
+else if (iOS)
+{
+    <p class="colour-text">
+        <i class="fa-brands fa-apple"></i> iOS
+    </p>
+}
+else if (Blackberry)
+{
+    <p class="colour-text">
+        <i class="fa-brands fa-blackberry"></i> Blackberry
+    </p>
+}
+
+<div>
+        <p class="@(AndroidPhone ? "Greentext" : "Greytext")">@AndroidPhone AndroidPhone</p>
+        <p class="@(AndroidTablet ? "Greentext" : "Greytext")">@AndroidTablet AndroidTablet</p>
+        <p class="@(Blackberry ? "Greentext" : "Greytext")">@Blackberry Blackberry</p>
+        <p class="@(BlackberryPhone ? "Greentext" : "Greytext")">@BlackberryPhone BlackberryPhone</p>
+        <p class="@(BlackberryTablet ? "Greentext" : "Greytext")">@BlackberryTablet BlackberryTablet</p>
+        <p class="@(Desktop ? "Greentext" : "Greytext")">@Desktop Desktop</p>
+        <p class="@(iOS ? "Greentext" : "Greytext")">@iOS iOS</p>
+        <p class="@(iPad ? "Greentext" : "Greytext")">@iPad iPad</p>
+        <p class="@(iPhone ? "Greentext" : "Greytext")">@iPhone iPhone</p>
+        <p class="@(iPod ? "Greentext" : "Greytext")">@iPod iPod</p>
+        <p class="@(MacOs ? "Greentext" : "Greytext")">@MacOs MacOs</p>
+        <p class="@(MeeGo ? "Greentext" : "Greytext")">@MeeGo MeeGo</p>
+        <p class="@(Mobile ? "Greentext" : "Greytext")">@Mobile Mobile</p>
+        <p class="@(Tablet ? "Greentext" : "Greytext")">@Tablet Tablet</p>
+        <p class="@(Television ? "Greentext" : "Greytext")">@Television Television</p>
+        <p class="@(Windows ? "Greentext" : "Greytext")">@Windows Windows</p>
+        <p class="@(WindowsPhone ? "Greentext" : "Greytext")">@WindowsPhone WindowsPhone</p>
+        <p class="@(WindowsTablet ? "Greentext" : "Greytext")">@WindowsTablet WindowsTablet</p>
+        
+        <p class="LightBlueText">Orientation @Orientation</p>
+        <p class="LightBlueText">OS @OS</p>
+</div>
+
+<p class="colour-text">And more! Not seeing what you want in here <a href="https://github.com/HugoVG/CurrentDevice/issues/new" target="_blank">Make an Issue on github!<i class="fa-solid fa-link fa-xs"></i></a></p>
 
 @code{
 
@@ -112,7 +134,6 @@
         Blackberry = await CurrentDeviceService.Blackberry();
         BlackberryPhone = await CurrentDeviceService.BlackberryPhone();
         BlackberryTablet = await CurrentDeviceService.BlackberryTablet();
-        //Cordova = await BlazorCurrentDeviceService.Cordova();
         Desktop = await CurrentDeviceService.Desktop();
         iOS = await CurrentDeviceService.iOS();
         iPad = await CurrentDeviceService.iPad();

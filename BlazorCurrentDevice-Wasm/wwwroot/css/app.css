@@ -101,3 +101,54 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+:root {
+    --gradient: linear-gradient(
+            45deg,
+            aqua   , #00bcff, #007aff,
+            #0037ff, #0b00ff, #4e00ff,
+            #9000ff, #d300ff, #ff00e9,
+            #ff00a6, #ff0064, #ff0021,
+            #ff2100, #ff6400, #ffa600,
+            #ffe900, #d3ff00, #90ff00,
+            #4eff00, #0bff00, #00ff37,
+            #00ff7a, #00ffbc, aqua
+    );
+
+    --clr-grad-left : Crimson;
+    --grad-left-per : 0%;
+    --clr-grad-right: Blue;
+}
+body{
+    background-color: #011627;
+}
+.big-text{
+    font-size: 2rem;
+}
+.colour-text,
+.fa-brands,
+.fa-solid{
+    /* Start Gradient Text */
+    background-color: var(--clr-grad-left);
+
+    background-image: linear-gradient(45deg,
+    var(--clr-grad-left) var(--grad-left-per),
+    var(--clr-grad-right) 100%
+    ) !important;
+
+    /* Works, enable to verify */
+    background-image: var(--gradient); /**/
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* End Gradient Text */
+}
+.Greentext{
+    color: #26b050;
+}
+.Greytext{
+    color: #e0e0e0;
+}
+.LightBlueText{
+    color: #1b6ec2;
+}
