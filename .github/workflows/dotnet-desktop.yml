@@ -29,6 +29,10 @@ jobs:
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
       run: dotnet publish -c Release -f net8.0 --nologo
+
+    # DEBUG: List files
+    - name: ls
+      run: ls -al
     
     # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to CurrentDevice
