@@ -33,6 +33,9 @@ jobs:
     # DEBUG: List files
     - name: ls
       run: ls -al
+    # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to CurrentDevice
+      run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/index.html
     # DEBUG: List files
     - name: copy to release 
       run: cp release/wwwroot/* release/ -r
@@ -40,9 +43,6 @@ jobs:
     - name: ls more
       run: ls release/ -al 
     
-    # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to CurrentDevice
-      run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
