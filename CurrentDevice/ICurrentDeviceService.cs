@@ -2,6 +2,9 @@
 
 namespace BlazorCurrentDevice
 {
+    /// <summary>
+    /// Service to get information about the current device
+    /// </summary>
     public interface ICurrentDeviceService
     {
         /// <summary>
@@ -108,7 +111,7 @@ namespace BlazorCurrentDevice
         /// <inheritdoc cref="Documentation"/>
         Task<string> Orientation();
         /// <summary>
-        /// Checks if the current device is portrait orientation. Possible return values 'ios', 'iphone', 'ipad', 'ipod', 'android', 'blackberry', 'windows', 'macos', 'fxos', 'meego', 'television', or 'unknown'
+        /// Checks if the current device is portrait orientation. Possible return values 'ios', 'iphone', 'ipad', 'ipod', 'android', 'blackberry', 'windows', 'macos', 'meego', 'television', or 'unknown'
         /// </summary>
         /// <returns></returns>
         /// <inheritdoc cref="Documentation"/>
