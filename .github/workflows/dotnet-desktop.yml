@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+# Run workflow on every push to the master branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-to-github-pages:
+    # use ubuntu-latest image to run steps on
+    runs-on: ubuntu-latest
+    steps:
+    # uses GitHub's checkout action to checkout code form the master branch
+    - uses: actions/checkout@v4
+    
+    # sets up .NET Core SDK 3.1
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x
+    # Configure WASM tools
+    - name: Download wasm Tools
+      run: dotnet workload install wasm-tools
+        
+    # Go to correct dolfer
+    - name: CD to Wasm
+      run: cd BlazorCurrentDevice-Wasm/ 
+
+    # publishes Blazor project to the release-folder
+    - name: Publish .NET Core Project
+      run: dotnet publish ./BlazorCurrentDevice-Wasm/BlazorCurrentDevice-Wasm.csproj -c Release -o release -f net8.0 --nologo
+
+    # DEBUG: List files
+    - name: ls
+      run: ls -al
+    # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to CurrentDevice
+      run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/wwwroot/index.html
+    # DEBUG: List files
+    - name: copy to release 
+      run: cp release/wwwroot/* release/ -r
+    # DEBUG: List files
+    - name: ls more
+      run: ls release/ -al 
+    
+    
+    # copy index.html to 404.html to serve the same file when a file is not found
+    - name: copy index.html to 404.html
+      run: cp release/wwwroot/index.html release/wwwroot/404.html
+
+    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+    - name: Add .nojekyll file
+      run: touch release/.nojekyll
+      
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: release # The folder the action should deploy.
