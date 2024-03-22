@@ -28,9 +28,9 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
-      run: dotnet publish -c Release -o ../release -f net8.0 --nologo
+      run: dotnet publish -c Release -f net8.0 --nologo
     
-    # changes the base-tag in index.html from '/' to 'EcoRoomCalculator' to match GitHub Pages repository subdirectory
+    # changes the base-tag in index.html from '/' to 'CurrentDevice' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to CurrentDevice
       run: sed -i 's/<base href="\/" \/>/<base href="\/CurrentDevice\/" \/>/g' release/wwwroot/index.html
     
