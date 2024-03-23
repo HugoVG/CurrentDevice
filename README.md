@@ -4,13 +4,24 @@ Device/User agent detector made in Blazor for Blazor. This library is a port of 
 
 No need to use JavaScript interop to detect the device or user agent. This library is a pure C# implementation of the original library.
 
+This library is trimmable and does not rely on Javascript (no need to add a <script> tag somewhere)
+
 > [!WARNING]  
 > This library is still in development and may not be stable or working as you expect. Please use with caution.
 
+## Installation
+![NuGet Downloads](https://img.shields.io/nuget/dt/CurrentDevice?logo=nuget&label=Nuget%20Downloads&labelColor=navy&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FCurrentDevice)
+
+
+### Nuget CLI 
+``dotnet add package CurrentDevice``
+
+### Csproj
+``<PackageReference Include="CurrentDevice" Version="1.0.1" />``
+
 ## Add reference in _Imports.razor
 
-`@using BlazorCurrentDevice`
-
+`@using CurrentDevice`
 
 ## Usage
 
@@ -64,9 +75,10 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 
 #### Device Methods
 
+To see a real world example you can visit the example [here on Github](https://hugovg.github.io/CurrentDevice/)
 <table>
 	<tr>
-		<th>BlazorCurrentDeviceService</th>
+		<th>CurrentDeviceService: Returns True/False</th>
 		<th>Method</th>
 	</tr>
 	<tr>
@@ -133,7 +145,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 		<td>Windows Tablet</td>
 		<td>BlazorCurrentDeviceService.WindowsTablet()</td>
 	</tr>
-  <tr>
+  	<tr>
 		<td>MacOs</td>
 		<td>BlazorCurrentDeviceService.MacOs()</td>
 	</tr>
@@ -151,7 +163,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 
 <table>
 	<tr>
-		<th>Orientation</th>
+		<th>Orientation returns string "landscape" or "portrait"</th>
 		<th>Method</th>
 	</tr>
 	<tr>
@@ -181,9 +193,21 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 	</tr>
 	<tr>
 		<td>BlazorCurrentDeviceService.OS()</td>
-		<td>'ios', 'iphone', 'ipad', 'ipod', 'android', 'blackberry', 'windows', 'macos', 'fxos', 'meego', 'television', or 'unknown'</td>
+		<td>'ios', 'iphone', 'ipad', 'ipod', 'android', 'blackberry', 'windows', 'macos', 'meego', 'television', or 'unknown'</td>
 	</tr>
 </table>
+
+## Technical information
+
+### Lifetimes
+
+Eventhough in DI it get added as scoped, 
+blazor WASM will treat it as a singleton [more on that here](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-8.0#service-lifetime) 
+meaning that if an user changes User agents and refreshes the page it'll still display old data untill a page refresh
+
+For blazor server it is scoped and every page request will have up to date information, interal responses get cached clientside per request so that if you check for Ipad then iOs it'll save some requests to the browser
+
+
 
 ## License
 MIT
