@@ -1,4 +1,4 @@
-using BlazorCurrentDevice;
+using CurrentDevice;
 using BlazorCurrentDevice_Server.Components;
 
 var builder = WebApplication.CreateBuilder(args);

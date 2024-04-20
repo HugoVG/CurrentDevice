@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BlazorCurrentDevice
+namespace CurrentDevice
 {
     /// <summary>
     /// Service to get information about the current device

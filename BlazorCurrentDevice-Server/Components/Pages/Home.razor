@@ -1,6 +1,5 @@
 ﻿@page "/"
-@using BlazorCurrentDevice
-@inject IJSRuntime JSRuntime
+@using CurrentDevice
 @inject ICurrentDeviceService CurrentDeviceService
 @rendermode InteractiveServer
 
@@ -108,9 +107,9 @@
         {
             // Get the user agent using JavaScript interop
             UserAgent = await CurrentDeviceService.GetUserAgent();
-            Android = await CurrentDeviceService.Android();
             AndroidPhone = await CurrentDeviceService.AndroidPhone();
             AndroidTablet = await CurrentDeviceService.AndroidTablet();
+            Android = await CurrentDeviceService.Android();
             Blackberry = await CurrentDeviceService.Blackberry();
             BlackberryPhone = await CurrentDeviceService.BlackberryPhone();
             BlackberryTablet = await CurrentDeviceService.BlackberryTablet();

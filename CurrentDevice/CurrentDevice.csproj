@@ -7,14 +7,16 @@
     <PackageProjectUrl>https://github.com/hugovg/CurrentDevice</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hugovg/CurrentDevice</RepositoryUrl>
     <RepositoryType>C#</RepositoryType>
-    <PackageReleaseNotes>Update to make Blazor Server/Hybrid work, Standard 2.1 net8.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Breaking change: Namespace name changed, internal dictionary should longer cause exceptions</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>HugoVG</Authors>
     <Copyright>HugoVG</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RootNamespace>BlazorCurrentDevice</RootNamespace>
+    <RootNamespace>CurrentDevice</RootNamespace>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageTags>Blazor;CurrentDevice;WASM;Blazor Server;UserAgent;Web</PackageTags>
+    <PackageId>CurrentDevice</PackageId>
   </PropertyGroup>
 
 
@@ -23,9 +25,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.3" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+    <None Include="../README.md" />
     <None Include="../LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
-    
+    <None Include="../NugetReadMe.md" Pack="true" PackagePath="README.md" />    
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.3" />

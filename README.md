@@ -17,7 +17,7 @@ This library is trimmable and does not rely on Javascript (no need to add a <scr
 ``dotnet add package CurrentDevice``
 
 ### Csproj
-``<PackageReference Include="CurrentDevice" Version="1.0.1" />``
+``<PackageReference Include="CurrentDevice" Version="1.0.2" />``
 
 ## Add reference in _Imports.razor
 
@@ -30,7 +30,7 @@ This library is trimmable and does not rely on Javascript (no need to add a <scr
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 //...  Shortend for brevity
-builder.Services.AddBlazorCurrentDevice();
+builder.Services.AddCurrentDeviceService();
 //... Shortend for brevity
 await builder.Build().RunAsync();
 ```
@@ -39,12 +39,12 @@ await builder.Build().RunAsync();
 
 ```csharp
 @code{
-    [Inject] IBlazorCurrentDeviceService BlazorCurrentDeviceService { get; set; }
+    [Inject] ICurrentDeviceService CurrentDeviceService { get; set; }
 }
 ```
 or 
 ```csharp
-@inject IBlazorCurrentDeviceService BlazorCurrentDeviceService
+@inject ICurrentDeviceService CurrentDeviceService
 ```
 
 ### Usage in your component
@@ -54,7 +54,7 @@ or
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    UserAgent = await BlazorCurrentDeviceService.GetUserAgent();
+    UserAgent = await CurrentDeviceService.GetUserAgent();
 }
 ```
 
@@ -65,7 +65,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     if (firstRender)
     {
-        UserAgent = await BlazorCurrentDeviceService.GetUserAgent();
+        UserAgent = await CurrentDeviceService.GetUserAgent();
         StateHasChanged();
     }
 }
@@ -83,79 +83,79 @@ To see a real world example you can visit the example [here on Github](https://h
 	</tr>
 	<tr>
 		<td>Mobile</td>
-		<td>BlazorCurrentDeviceService.Mobile()</td>
+		<td>CurrentDeviceService.Mobile()</td>
 	</tr>
 	<tr>
 		<td>Tablet</td>
-		<td>BlazorCurrentDeviceService.Tablet()</td>
+		<td>CurrentDeviceService.Tablet()</td>
 	</tr>
 	<tr>
 		<td>Desktop</td>
-		<td>BlazorCurrentDeviceService.Desktop()</td>
+		<td>CurrentDeviceService.Desktop()</td>
 	</tr>
 	<tr>
 		<td>iOS</td>
-		<td>BlazorCurrentDeviceService.iOS()</td>
+		<td>CurrentDeviceService.iOS()</td>
 	</tr>
 	<tr>
 		<td>iPad</td>
-		<td>BlazorCurrentDeviceService.iPad()</td>
+		<td>CurrentDeviceService.iPad()</td>
 	</tr>
 	<tr>
 		<td>iPhone</td>
-		<td>BlazorCurrentDeviceService.iPhone()</td>
+		<td>CurrentDeviceService.iPhone()</td>
 	</tr>
 	<tr>
 		<td>iPod</td>
-		<td>BlazorCurrentDeviceService.iPod()</td>
+		<td>CurrentDeviceService.iPod()</td>
 	</tr>
 	<tr>
 		<td>Android</td>
-		<td>BlazorCurrentDeviceService.Android()</td>
+		<td>CurrentDeviceService.Android()</td>
 	</tr>
 	<tr>
 		<td>Android Phone</td>
-		<td>BlazorCurrentDeviceService.AndroidPhone()</td>
+		<td>CurrentDeviceService.AndroidPhone()</td>
 	</tr>
 	<tr>
 		<td>Android Tablet</td>
-		<td>BlazorCurrentDeviceService.AndroidTablet()</td>
+		<td>CurrentDeviceService.AndroidTablet()</td>
 	</tr>
 	<tr>
 		<td>BlackBerry</td>
-		<td>BlazorCurrentDeviceService.Blackberry()</td>
+		<td>CurrentDeviceService.Blackberry()</td>
 	</tr>
 	<tr>
 		<td>BlackBerry Phone</td>
-		<td>BlazorCurrentDeviceService.BlackberryPhone()</td>
+		<td>CurrentDeviceService.BlackberryPhone()</td>
 	</tr>
 	<tr>
 		<td>BlackBerry Tablet</td>
-		<td>BlazorCurrentDeviceService.BlackberryTablet()</td>
+		<td>CurrentDeviceService.BlackberryTablet()</td>
 	</tr>
 	<tr>
 		<td>Windows</td>
-		<td>BlazorCurrentDeviceService.Windows()</td>
+		<td>CurrentDeviceService.Windows()</td>
 	</tr>
 	<tr>
 		<td>Windows Phone</td>
-		<td>BlazorCurrentDeviceService.WindowsPhone()</td>
+		<td>CurrentDeviceService.WindowsPhone()</td>
 	</tr>
 	<tr>
 		<td>Windows Tablet</td>
-		<td>BlazorCurrentDeviceService.WindowsTablet()</td>
+		<td>CurrentDeviceService.WindowsTablet()</td>
 	</tr>
   	<tr>
 		<td>MacOs</td>
-		<td>BlazorCurrentDeviceService.MacOs()</td>
+		<td>CurrentDeviceService.MacOs()</td>
 	</tr>
 	<tr>
 		<td>MeeGo</td>
-		<td>BlazorCurrentDeviceService.MeeGo()</td>
+		<td>CurrentDeviceService.MeeGo()</td>
 	</tr>
 	<tr>
 		<td>Television</td>
-		<td>BlazorCurrentDeviceService.Television()</td>
+		<td>CurrentDeviceService.Television()</td>
 	</tr>
 </table>
 
@@ -168,11 +168,11 @@ To see a real world example you can visit the example [here on Github](https://h
 	</tr>
 	<tr>
 		<td>Landscape</td>
-		<td>BlazorCurrentDeviceService.Landscape()</td>
+		<td>CurrentDeviceService.Landscape()</td>
 	</tr>
 	<tr>
 		<td>Portrait</td>
-		<td>BlazorCurrentDeviceService.Portrait()</td>
+		<td>CurrentDeviceService.Portrait()</td>
 	</tr>
 </table>
 
@@ -184,15 +184,15 @@ To see a real world example you can visit the example [here on Github](https://h
 		<th>Returns</th>
 	</tr>
 	<tr>
-		<td>BlazorCurrentDeviceService.Type()</td>
+		<td>CurrentDeviceService.Type()</td>
 		<td>'mobile', 'tablet', 'desktop', or 'unknown'</td>
 	</tr>
 	<tr>
-		<td>BlazorCurrentDeviceService.Orientation()</td>
+		<td>CurrentDeviceService.Orientation()</td>
 		<td>'landscape', 'portrait', or 'unknown'</td>
 	</tr>
 	<tr>
-		<td>BlazorCurrentDeviceService.OS()</td>
+		<td>CurrentDeviceService.OS()</td>
 		<td>'ios', 'iphone', 'ipad', 'ipod', 'android', 'blackberry', 'windows', 'macos', 'meego', 'television', or 'unknown'</td>
 	</tr>
 </table>
@@ -201,7 +201,7 @@ To see a real world example you can visit the example [here on Github](https://h
 
 ### Lifetimes
 
-Eventhough in DI it get added as scoped, 
+Even though in DI it get added as scoped, 
 blazor WASM will treat it as a singleton [more on that here](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-8.0#service-lifetime) 
 meaning that if an user changes User agents and refreshes the page it'll still display old data untill a page refresh
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorCurrentDevice
+namespace CurrentDevice
 {
     public static class ServiceCollectionExtensions
     {
