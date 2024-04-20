@@ -2,144 +2,71 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorCurrentDevice
+namespace CurrentDevice
 {
     internal class CurrentDeviceService : ICurrentDeviceService
     {
         private IJSRuntime JsRuntime { get; set; }
 
-        public CurrentDeviceService(IJSRuntime jSRuntime)
-        {
-            JsRuntime = jSRuntime;
-        }
+        public CurrentDeviceService(IJSRuntime jSRuntime) => JsRuntime = jSRuntime;
 
-        private Dictionary<string, bool> _deviceCache = new Dictionary<string, bool>();
+        private readonly Dictionary<string, bool> _deviceCache = new Dictionary<string, bool>();
 
 
-        public async Task<bool> MacOs()
-        {
-            return await Find("mac");
-        }
+        public async Task<bool> MacOs() => await Find("mac");
 
-        public async Task<string> Type()
-        {
-            return await Desktop() ? "desktop" :
-                await Tablet() ? "tablet" :
-                await Mobile() ? "mobile" :
-                await Television() ? "television" : "unknown";
-        }
+        public async Task<string> Type() =>
+            await Desktop() ? "desktop" :
+            await Tablet() ? "tablet" :
+            await Mobile() ? "mobile" :
+            await Television() ? "television" : "unknown";
 
-        public Task<bool> Windows()
-        {
-            return Find("windows");
-        }
+        public Task<bool> Windows() => Find("windows");
 
-        public async Task<bool> WindowsPhone()
-        {
-            return await Windows() && await Find("phone");
-        }
+        public async Task<bool> WindowsPhone() => await Windows() && await Find("phone");
 
-        public async Task<bool> WindowsTablet()
-        {
-            return await Windows() && await Find("touch") && !await WindowsPhone();
-        }
+        public async Task<bool> WindowsTablet() => await Windows() && await Find("touch") && !await WindowsPhone();
 
-        public Task<bool> iPhone()
-        {
-            return Find("iphone");
-        }
+        public Task<bool> iPhone() => Find("iphone");
 
-        public Task<bool> iPod()
-        {
-            return Find("ipod");
-        }
+        public Task<bool> iPod() => Find("ipod");
 
-        public Task<bool> iPad()
-        {
-            return Find("ipad");
-        }
+        public Task<bool> iPad() => Find("ipad");
 
-        public async Task<bool> Desktop()
-        {
-            return (!await Mobile()) && (!await Tablet()) && (!await Television());
-        }
+        public async Task<bool> Desktop() => !await Mobile() && !await Tablet() && (!await Television());
 
-        public async Task<bool> iOS()
-        {
-            return await iPhone() || await iPod() || await iPad();
-        }
+        public async Task<bool> iOS() => await iPhone() || await iPod() || await iPad();
 
-        public async Task<bool> Android()
-        {
-            return await Find("android");
-        }
+        public async Task<bool> Android() => await Find("android");
 
-        public async Task<bool> AndroidPhone()
-        {
-            return await Android() && await Find("mobile");
-        }
+        public async Task<bool> AndroidPhone() => await Android() && await Find("mobile");
 
-        public async Task<bool> AndroidTablet()
-        {
-            return await Android() && !await AndroidPhone();
-        }
+        public async Task<bool> AndroidTablet() => await Android() && !await AndroidPhone();
 
-        public async Task<bool> Blackberry()
-        {
-            return await Find("blackberry") || await Find("bb10") || await Find("rim");
-        }
+        public async Task<bool> Blackberry() => await Find("blackberry") || await Find("bb10") || await Find("rim");
+        
+        public async Task<bool> BlackberryPhone() => await Blackberry() && !(await Find("tablet"));
 
-        public async Task<bool> BlackberryPhone()
-        {
-            return await Blackberry() && !(await Find("tablet"));
-        }
+        public async Task<bool> BlackberryTablet() => await Blackberry() && await Find("tablet");
 
-        public async Task<bool> BlackberryTablet()
-        {
-            return await Blackberry() && await Find("tablet");
-        }
+        public Task<bool> MeeGo() => Find("meego");
 
-        public Task<bool> MeeGo()
-        {
-            return Find("meego");
-        }
+        public async Task<bool> Mobile() =>
+            await AndroidPhone() || await iPhone() || await iPod() || await WindowsPhone() ||
+            await BlackberryPhone() || await MeeGo();
 
-        public async Task<bool> Mobile()
-        {
-            return await AndroidPhone() || await iPhone() || await iPod() || await WindowsPhone() ||
-                   await BlackberryPhone() || await MeeGo();
-        }
+        public async Task<bool> Tablet() => await iPad() || await AndroidTablet() || await BlackberryTablet() || await WindowsTablet();
 
-        public async Task<bool> Tablet()
-        {
-            return await iPad() || await AndroidTablet() || await BlackberryTablet() || await WindowsTablet();
-        }
-
-        public async Task<bool> Television()
-        {
-            return FindIn(UserAgent ??= await GetUserAgent(), Televisions) != "unknown";
-        }
+        public async Task<bool> Television() => FindIn(UserAgent ??= await GetUserAgent(), Televisions) != "unknown";
 
 
-        public async Task<bool> Landscape()
-        {
-            return await Orientation() == "landscape";
-        }
+        public async Task<bool> Landscape() => await Orientation() == "landscape";
 
-        public async Task<bool> Portrait()
-        {
-            return await Orientation() == "portrait";
-        }
+        public async Task<bool> Portrait() => await Orientation() == "portrait";
 
-        public async Task<string> Orientation()
-        {
-            return FindIn(await GetOrientation(), Orientations);
-        }
+        public async Task<string> Orientation() => FindIn(await GetOrientation(), Orientations);
 
-        public async Task<string> OS()
-        {
-            return FindIn(UserAgent ??= await GetUserAgent(), OperatingSystems);
-        }
+        public async Task<string> OS() => FindIn(UserAgent ??= await GetUserAgent(), OperatingSystems);
 
 
         private async Task<bool> Find(string value)
@@ -151,11 +78,11 @@ namespace BlazorCurrentDevice
 
             UserAgent ??= await GetUserAgent();
             foundValue = UserAgent.Contains(value);
-            _deviceCache.Add(value, foundValue);
+            _deviceCache.TryAdd(value, foundValue);
             return foundValue;
         }
 
-        private string FindIn(string searchString, string[] values)
+        private static string FindIn(string searchString, string[] values)
         {
             foreach (var value in values)
             {
@@ -168,10 +95,7 @@ namespace BlazorCurrentDevice
             return "unknown";
         }
         
-        public async Task<string> GetUserAgent()
-        {
-            return (await JsRuntime.InvokeAsync<string>("eval", "window.navigator.userAgent")).ToLower();
-        }
+        public async Task<string> GetUserAgent() => (await JsRuntime.InvokeAsync<string>("eval", "window.navigator.userAgent")).ToLower();
 
         /// <summary>
         /// We are using either Scoped or Singleton so this method will be called only once for wasm, and once per connection for server
