@@ -166,5 +166,5 @@ namespace CurrentDevice
     /// !KEEP IN MIND! The user agent can be changed by the user or by the browser itself to something different to protect the user's privacy.
     /// </remarks>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"/>
-    internal class Documentation { }
+    internal class Documentation;
 }
