@@ -17,7 +17,7 @@ This library is trimmable and does not rely on Javascript (no need to add a <scr
 ``dotnet add package CurrentDevice``
 
 ### Csproj
-``<PackageReference Include="CurrentDevice" Version="1.0.2" />``
+``<PackageReference Include="CurrentDevice" Version="1.0.3" />``
 
 ## Add reference in _Imports.razor
 

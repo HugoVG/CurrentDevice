@@ -7,9 +7,9 @@
     <PackageProjectUrl>https://github.com/hugovg/CurrentDevice</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hugovg/CurrentDevice</RepositoryUrl>
     <RepositoryType>C#</RepositoryType>
-    <PackageReleaseNotes>Breaking change: Namespace name changed, internal dictionary should longer cause exceptions</PackageReleaseNotes>
+    <PackageReleaseNotes>Dotnet 9 Support</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>HugoVG</Authors>
     <Copyright>HugoVG</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>

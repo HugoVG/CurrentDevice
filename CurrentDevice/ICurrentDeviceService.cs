@@ -159,12 +159,15 @@ namespace CurrentDevice
         /// <inheritdoc cref="Documentation"/>
         Task<bool> WindowsTablet();
     }
-    
+
     /// <remarks>
     /// The user agent is a string that the browser sends to the server to identify itself.
     /// A typical user agent string contains the name of the browser, the version, the operating system, and the engine of the browser.
     /// !KEEP IN MIND! The user agent can be changed by the user or by the browser itself to something different to protect the user's privacy.
     /// </remarks>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"/>
-    internal class Documentation;
+    internal class Documentation
+    {
+        
+    }
 }
